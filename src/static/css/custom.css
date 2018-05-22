@@ -1,0 +1,28 @@
+.bg-primary {
+    /* background-color: #bd5d38!important; */
+    background-image: radial-gradient(circle, #0084bf, #3e6c9b, #475776, #414353, #333333);
+}
+
+/* Menu */
+a.nav-link {
+  color: white!important;
+}
+
+.active {
+  font-style: italic;
+}
+
+/* Text */
+span.text-primary {
+    color: #cdcfd2!important;
+}
+
+a.icons:hover, a.icons:focus, a.icons:active {
+  color: #0073b1!important;
+}
+
+/* Technologies Icons CSS */
+.techicon {
+  width: 4rem!important;
+}
+

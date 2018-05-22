@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "/Users/toufikswar/Documents/Python/toufikswarCV/bin/python3.6",
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.pep8Enabled": false
+}

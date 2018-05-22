@@ -1,0 +1,39 @@
+<!--Section: Main features & Quick Start-->
+<section>
+
+  <h3 class="h3 mb-5">Professional Experiences</h3>
+
+  <!--Grid row-->
+  <div class="row wow fadeIn">
+
+    <!--Grid column-->
+
+    <div class="col-md-12 px-4">
+
+
+      {% for exp in exps_list %}
+      <div class="py-2 mb-5"> <!-- removed class my-auto  -->
+        <div class="resume-item d-flex flex-sm-row flex-column"><!-- flex-column allows to put date under at breakpoint  -->
+          <div class="resume-content mr-auto">
+            <h4 class="mb-3">{{ exp.Title }} at
+              <strong><span class="text-primary"> {{ exp.Company }}</span></strong>
+            </h4>
+          </div>
+          <h5 class="text-primary">{{ exp.StartDate|date:"F Y" }} - {{ exp.EndDate|date:"F Y" }}</h5>
+        </div>
+        
+        <div class="resume-item d-flex flex-column">
+          {{ exp.ExperienceDescription | safe }}
+        </div>
+      </div>
+      {% endfor %}
+
+
+    </div>
+    <!--/Grid column-->
+
+  </div>
+  <!--/Grid row-->
+
+</section>
+<!--Section: Main features & Quick Start-->
