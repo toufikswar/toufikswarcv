@@ -165,16 +165,12 @@
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <!-- <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script> -->
   <script src='{% static "vendor/mdbootstrap/js/jquery-3.2.1.min.js" %}'></script>
   <!-- Bootstrap tooltips -->
-  <!-- <script type="text/javascript" src="js/popper.min.js"></script> -->
   <script src='{% static "vendor/mdbootstrap/js/popper.min.js" %}'></script>
   <!-- Bootstrap core JavaScript -->
-  <!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
   <script src='{% static "vendor/mdbootstrap/js/bootstrap.min.js" %}'></script>
   <!-- MDB core JavaScript -->
-  <!-- <script type="text/javascript" src="js/mdb.min.js"></script> -->
   <script src='{% static "vendor/mdbootstrap/js/mdb.min.js" %}'></script>
 
   <!-- Template specific -->
@@ -200,20 +196,15 @@
       .type('I am Toufik')
       .break()
       .pause(1000)
-      .type('I can help you make PROFIT')
+      .type('I can help you with your business')
       .pause(1000)
-      .options({speed: 500})
-      .delete(6)
-      .options({speed: 150})
-      .type('cool things, with your business')
       .pause(2000)
       .empty()
-      .type('Wanna know how?')
+      //.type('Wanna know how?')
       .pause(2000)
       .break()
-      .type('Check out my skills <a> Here </a>')
+      .type('Check out my skills :)')
       ;
-
   </script>
 
 
@@ -224,12 +215,30 @@
         $("li.active").removeClass('active');
         $(this).parent().addClass('active');
       });
+    });
+  </script>
 
-      
-      $("p").on("blur", function(event){
-        console.log("timmmmmy");
-        
+  {% comment %} <script type="text/javascript">
+    $(document).ready(function(){
+      $("[data-toggle]").on("click", function(event){
+        $('html, body').animate({
+          scrollTop: $(this).parent().parent().parent().offset().top
+        }, 2000);
+        console.log($(this));
       });
+    });
+  </script> {% endcomment %}
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#ibm,#bnp,#ccl").on("shown.bs.collapse", function(event){
+        $(this).next().children("a").children("i").addClass('fa-minus-circle').removeClass('fa-plus-circle');
+      });
+      $("#ibm,#bnp,#ccl").on("hidden.bs.collapse", function(event){
+        $(this).next().children("a").children("i").addClass('fa-plus-circle').removeClass('fa-minus-circle');
+      });
+
 
 
     });
