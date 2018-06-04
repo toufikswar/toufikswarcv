@@ -3,7 +3,7 @@
   <div class="container">
 
     <!-- Brand -->
-    <a class="navbar-brand" href="#" target="">
+    <a class="navbar-brand" href="{% url 'cv:home' %}" target="">
       <strong>Toufik Swar</strong>
     </a>
 
@@ -24,16 +24,19 @@
           </a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link js-scroll-trigger" href="#skills" target="">Skills</a>
+          <a class="nav-link js-scroll-trigger" href="#skills" target="">Services</a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link js-scroll-trigger" href="#experience" target="">Experiences</a>
+          <a class="nav-link js-scroll-trigger" href="#contact" target="">Contact</a>
         </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link js-scroll-trigger" href="#education" target="">Education</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link js-scroll-trigger" href="#about" target="">About Me</a>
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Other</a>
+          <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'cv:mycv' %}">Curriculum</a>
+              <a class="dropdown-item" href="{% url 'cv:mycv' %}#about">About Me</a>
+              <a class="dropdown-item" href="#">Blog</a>
+          </div>
         </li>
       </ul>
 

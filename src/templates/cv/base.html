@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Toufik Swar</title>
+  <!-- Font Awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  {% comment %} <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css"> {% endcomment %}
+
+  <!-- Bootstrap core CSS -->
+  <link href='{% static "vendor/mdbootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+  <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- Material Design Bootstrap -->
+  <!-- <link href="css/mdb.min.css" rel="stylesheet"> -->
+  <link href='{% static "vendor/mdbootstrap/css/mdb.min.css" %}' rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href='{% static "vendor/mdbootstrap/css/style.min.css" %}' rel="stylesheet">
+  <!-- <link href="css/style.min.css" rel="stylesheet"> -->
+
+  <link href='{% static "css/custom.css" %}' rel="stylesheet">
+
+  <style type="text/css">
+
+
+  </style>
+</head>
+
+<body>
+
+  {% include "cv/navbar.html" %}
+
+  {% block content %}
+  
+  
+
+  {% endblock content %}
+
+  {% include "cv/footer.html" %}
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script src='{% static "vendor/mdbootstrap/js/jquery-3.2.1.min.js" %}'></script>
+  <!-- Bootstrap tooltips -->
+  <script src='{% static "vendor/mdbootstrap/js/popper.min.js" %}'></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src='{% static "vendor/mdbootstrap/js/bootstrap.min.js" %}'></script>
+  <!-- MDB core JavaScript -->
+  <script src='{% static "vendor/mdbootstrap/js/mdb.min.js" %}'></script>
+
+  <!-- Template specific -->
+  <script src='{% static "vendor/jquery-easing/jquery.easing.min.js" %}'></script>
+  <script src='{% static "js/resume.js" %}'></script>
+
+  <!-- Other JS Query plugin -->
+  <script src='{% static "vendor/typeit/dist/typeit.min.js" %}'></script>
+  
+
+
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+  </script>
+
+  <script type="text/javascript">
+    new TypeIt('#element', {
+      speed: 150
+    }).type('Hey there')
+      .break()
+      .type('I am Toufik')
+      .break()
+      .pause(1000)
+      .type('I can help you with your business')
+      .pause(1000)
+      .pause(2000)
+      .empty()
+      .pause(2000)
+      .break()
+      .type('Check out my skills :)')
+      ;
+  </script>
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+      $( "li.nav-item a" ).on( "click", function( event ) {
+        $("li.active").removeClass('active');
+        $(this).parent().addClass('active');
+      });
+    });
+  </script>
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#ibm,#bnp,#ccl").on("shown.bs.collapse", function(event){
+        $(this).next().children("a").children("i").addClass('fa-minus-circle').removeClass('fa-plus-circle');
+      });
+      $("#ibm,#bnp,#ccl").on("hidden.bs.collapse", function(event){
+        $(this).next().children("a").children("i").addClass('fa-plus-circle').removeClass('fa-minus-circle');
+      });
+    });
+  </script>
+
+
+  <script type="text/javascript">
+    $(document).ready(function (){
+      $(document).on('submit', '#contact_form', function(e){
+        e.preventDefault();        
+
+          $.ajax({
+            type:'POST',
+            url:'/contact/',
+            data: {
+              full_name:$('#id_full_name').val(),
+              email: $('#id_email').val(),
+              message: $('#id_message').val(),
+              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken').val(),
+            },
+            success: function(response){
+              if (response.status === "success"){
+                $("#contact_alert").addClass('alert-success').fadeIn();
+              }
+              else {
+                $("#message").text("The message couldn't be sent");
+                $("#message").prev().children('i').removeClass('fa-thumbs-o-up').addClass('fa-times-circle');
+                $("#contact_alert").addClass('alert-danger').fadeIn();
+              }
+            }
+          });
+      });
+
+    });
+  </script>
+
+
+
+
+</body>
+
+</html>

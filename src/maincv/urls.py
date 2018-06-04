@@ -10,4 +10,5 @@ urlpatterns = [
     #path('<int:id>/view/', views.home, name="home"),
     #path('<int:id>/edit/<str:section>/',views.edit , name="edit"),
     path('',views.home , name="home"),
+    path('cv/', views.cv, name="mycv"),
 ]

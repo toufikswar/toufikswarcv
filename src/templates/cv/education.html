@@ -1,14 +1,27 @@
 {% load static %}
-<section id="education">
+<section id="education" class="px-md-5">
 
-  <!-- <h2 class="my-5 h3 text-center">Education</h2> -->
-  <h3 class="h3 mb-5 text-center">Education</h3>
+  <div class="d-flex">
+    <h4 class="my-auto">Education</h4><i class=" grey-text fa fa-2x fa-graduation-cap my-auto ml-auto"></i>
+  </div>
+  <hr class="mb-5">
 
   {% for edu in educ_list  %}
   <div class="row features-small mb-5 pt-5 wow fadeIn">
-    <div class="col-md-3 mb-3"><h5>{{ edu.DegreeName }}</h5><i class="fa fa-graduation-cap indigo-text mr-4" aria-hidden="true"></i>{{ edu.EndDate|date:"F Y" }}</div> 
+    {% comment %} <div class="col-md-3 mb-3"><h5>{{ edu.DegreeName }}</h5>{{ edu.EndDate|date:"F Y" }}</div> 
     <div class="col-md-7 d-flex-column">{{ edu.DegreeDescription | safe }}</div>
-    <div class="col-md-2"><img src="{% static edu.LogoURL %}" class="img-fluid" alt="Logo ISEP"></div>
+    <div class="col-md-2"><img src="{% static edu.LogoURL %}" class="img-fluid" alt="Logo ISEP"></div> {% endcomment %}
+    <div class="col-md-3">
+      <div class="d-flex flex-column">
+        <div class="text-center"><img src="{% static edu.LogoURL %}" class="img-fluid" alt="School Logo"></div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+      <div class="d-flex"><h5 class="text-primary ml-auto">{{ edu.DegreeName }}</h5></div>
+      {{ edu.DegreeDescription | safe }}
+    </div>
+
   </div>
   {% endfor %}
 

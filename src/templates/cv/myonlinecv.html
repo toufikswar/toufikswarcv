@@ -1,0 +1,40 @@
+{% extends "cv/base.html" %}
+
+{% block content %}
+<style>
+  .navbar {
+    background-color: #667490;
+  }
+  .scrolling-navbar {
+    transition: none;
+  }
+  .top-nav-collapse {
+    background-color: #667490;
+  }
+   
+</style>
+
+<main>
+  <div class="container">
+
+    <hr class="my-5" style="border-color:white;">
+
+    <span id="experience"></span>
+    <hr class="my-5" style="border-color:white;">
+
+    {% include "cv/experiences.html" %}
+
+    <span id="education"></span>
+    <hr class="my-5" style="border-color:white;">
+
+    {% include "cv/education.html" %}
+
+    <span class="d-flex" id="about"></span>
+    <hr class="my-5">
+
+    {% include "cv/about_me.html" %}
+
+  </div>
+</main>
+
+{% endblock content %}

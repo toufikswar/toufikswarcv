@@ -149,3 +149,17 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"media_cdn")
 
 # Crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+
+
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = config('EMAIL_HOST') # double check the settings in your outlook mailbox to make sure the host name is correct
+
+EMAIL_PORT = config('EMAIL_PORT', cast=int)  # double check the settings in your outlook mailbox and make sure the port number is correct
+
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # don't include the @blah.com part! I have made this stupid mistakes before
+
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')

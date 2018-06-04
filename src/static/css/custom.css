@@ -1,28 +1,101 @@
-.bg-primary {
-    /* background-color: #bd5d38!important; */
-    background-image: radial-gradient(circle, #0084bf, #3e6c9b, #475776, #414353, #333333);
+/*
+@media (min-width: 800px) and (max-width: 850px) {
+  .navbar:not(.top-nav-collapse) {
+      background: #1C2331!important;
+  }
+} */
+
+/* Navigation*/
+.navbar {
+  background-color: transparent;
+}
+.scrolling-navbar {
+  transition: background .5s ease-in-out, padding .5s ease-in-out;
+}
+.top-nav-collapse {
+  background-color: #667490;
+}
+/*
+footer.page-footer {
+  background-color: #667490;
+} */
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #667490;
+  }
 }
 
-/* Menu */
-a.nav-link {
-  color: white!important;
+
+/* Keeps image size always for 70% of original - on XS devices and all above */
+.img-fluid {
+  max-width: 70%;
 }
 
-.active {
-  font-style: italic;
+/* Allows to put images on normal size for all devices bigger than XS */
+@media (min-width: 576px) { 
+  .img-fluid {
+    max-width: 100%;
+  }
+ }
+
+
+
+/* Necessary for full page carousel*/
+html,
+body,
+.view {
+  height: 100%;
 }
 
-/* Text */
-span.text-primary {
-    color: #cdcfd2!important;
+/* Carousel*/
+.carousel,
+.carousel-item,
+.carousel-item.active {
+  height: 100%;
+}
+.carousel-inner {
+  height: 100%;
+}
+.carousel-item:nth-child(1) {
+  background-image: url('/static/img/adult-apple-device-business-839465.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
-a.icons:hover, a.icons:focus, a.icons:active {
-  color: #0073b1!important;
+/* Typewritting  */
+.typewriter {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 6s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
+.blockquote {
+  border-left: .25rem solid #eceeef;
+  border-right: .25rem solid #eceeef;
 }
 
 /* Technologies Icons CSS */
 .techicon {
-  width: 4rem!important;
+  width: 2.5rem!important;
 }
+
 
