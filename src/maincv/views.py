@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.forms import formset_factory
 import smtplib
+import re
 
 from django.core.mail import EmailMessage
 
@@ -68,28 +69,43 @@ def cv(request):
     return render(request, "cv/myonlinecv.html", context)
 
 def contact(request):
-    if request.method == "POST":
-        full_name = request.POST['full_name']
-        email = request.POST['email']
-        message = request.POST['message']
+    if request.is_ajax():
+        response = {}
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            data = {}
 
+            full_name = form.cleaned_data.get('full_name')
+            email = form.cleaned_data.get('email')
+            message = form.cleaned_data.get('message')
 
-        email = EmailMessage(
-            subject=full_name + " sent a message",
-            body=message,
-            from_email='toufik.swar@outlook.fr',
-            to=['toufik.swar@outlook.fr',],
-        )
+            email = EmailMessage(
+                subject=full_name + " sent a message",
+                body=message,
+                from_email='toufik.swar@outlook.fr',
+                to=['toufik.swar@outlook.fr',],
+            )
         
-        email.content_subtype = "html"
+            email.content_subtype = "html"
 
-        data = {}
+            try:
+                email.send(fail_silently=False)
+                response['status'] = "sent"
+            except:
+                response['status'] = "failed"
+                print(response)
+            
+            return JsonResponse(response)
 
-        try:
-            email.send(fail_silently=False)
-            data['status'] = "success"
-        except:
-            data['status'] = "fail"
+        else:
+            print("form is not valid")
+            errors_dic = form.errors.as_data()
+            f = {x:re.sub(r"[^\w\s\.]",'',str(errors_dic[x][0])) for x in errors_dic}
+            print(f)
+            response['status'] = "form error"
+            response['errors'] = f 
+
+            return JsonResponse(response)
         
 
-        return JsonResponse(data)
+        

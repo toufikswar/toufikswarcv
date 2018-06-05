@@ -18,24 +18,24 @@
 
       <!-- Left -->
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active mx-3">
-          <a class="nav-link" href="#">Home
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="{% url 'cv:home' %}">Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link js-scroll-trigger" href="#skills" target="">Services</a>
+          <a class="nav-link js-scroll-trigger" href="{% url 'cv:home' %}#skills" target="">Services</a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link js-scroll-trigger" href="#contact" target="">Contact</a>
+          <a class="nav-link js-scroll-trigger" href="{% url 'cv:home' %}#contact" target="">Contact</a>
         </li>
+        
         <!-- Dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Other</a>
           <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'cv:mycv' %}">Curriculum</a>
+              <a class="dropdown-item" href="{% url 'cv:mycv' %}#experience">Curriculum</a>
               <a class="dropdown-item" href="{% url 'cv:mycv' %}#about">About Me</a>
-              <a class="dropdown-item" href="#">Blog</a>
           </div>
         </li>
       </ul>

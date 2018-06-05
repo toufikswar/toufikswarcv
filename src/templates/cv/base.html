@@ -86,15 +86,15 @@
   </script>
 
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     $(document).ready(function(){
-
-      $( "li.nav-item a" ).on( "click", function( event ) {
+      $("li.nav-item a, div.dropdown-menu a" ).on( "click", function( event ) {
+        console.log($(this));
         $("li.active").removeClass('active');
-        $(this).parent().addClass('active');
+        $(this).parents('li.nav-item').addClass('active');
       });
     });
-  </script>
+  </script> -->
 
 
   <script type="text/javascript">
@@ -113,7 +113,6 @@
     $(document).ready(function (){
       $(document).on('submit', '#contact_form', function(e){
         e.preventDefault();        
-
           $.ajax({
             type:'POST',
             url:'/contact/',
@@ -123,19 +122,44 @@
               message: $('#id_message').val(),
               csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken').val(),
             },
+            dataType: 'json',
+            // success: function(response){
+            //   if (response.status === "success"){
+            //     $("#contact_alert").addClass('alert-success').fadeIn();
+            //   }
+            //   else {
+            //     $("#message").text("The message couldn't be sent");
+            //     $("#message").prev().children('i').removeClass('fa-thumbs-o-up').addClass('fa-times-circle');
+            //     $("#contact_alert").addClass('alert-danger').fadeIn();
+            //   }
+            // }
             success: function(response){
-              if (response.status === "success"){
-                $("#contact_alert").addClass('alert-success').fadeIn();
+              if (response.status === 'sent'){
+                  $("#contact_alert").addClass('alert-success').fadeIn();
+                  $("#contact_form")[0].reset();
+              } else if (response.status === 'failed'){
+                  console.log("failed to send message")
+                  $("#message").text("The message couldn't be sent");
+                  $("#message").prev().children('i').removeClass('fa-thumbs-o-up').addClass('fa-times-circle');
+                  $("#contact_alert").addClass('alert-danger').fadeIn();
+              } else if (response.status === 'form error' && response.errors ){
+                console.log(response.errors)
+                error_data = response.errors
+                $.each(error_data, function(index,value){
+                  console.log(index + " "+ error_data[index]);
+                  $("#id_"+index).addClass("is-invalid");
+                  $("#id_"+index).next('.invalid-feedback').show().html(String(error_data[index]));
+                  //$(".invalid-feedback").show()
+                });
               }
-              else {
-                $("#message").text("The message couldn't be sent");
-                $("#message").prev().children('i').removeClass('fa-thumbs-o-up').addClass('fa-times-circle');
-                $("#contact_alert").addClass('alert-danger').fadeIn();
-              }
-            }
-          });
+            },
+        });
       });
 
+      $("form").on("click", function(){
+        console.log("test de is invalid");
+        $(".is-invalid").removeClass("is-invalid");
+      });
     });
   </script>
 

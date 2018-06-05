@@ -6,13 +6,11 @@ class ContactForm(forms.Form):
     email = forms.EmailField(label="Email")
     phone = forms.CharField(label="Phone", required=False)
     message = forms.CharField(label = "Say stuff here",
-            widget=forms.Textarea(attrs={'row':'3'})
+            widget=forms.Textarea(attrs={'rows':'8'})
     )
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
-        email_base, email_provider = email.split("@")
-        domain, extension = email_provider.split(".")
-        if domain != "gmail":
-            raise forms.ValidationError("You must enter a Gmail address")
+        if "@" not in email:
+            raise forms.ValidationError("Please enter a valid email address.")
         return email
