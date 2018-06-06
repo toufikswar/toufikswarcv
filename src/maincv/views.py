@@ -91,9 +91,10 @@ def contact(request):
             try:
                 email.send(fail_silently=False)
                 response['status'] = "sent"
-            except:
+            except smtplib.SMTPException as e:
                 response['status'] = "failed"
-                print(response)
+                print(e)
+                print(email)
             
             return JsonResponse(response)
 
