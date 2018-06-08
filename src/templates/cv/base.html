@@ -9,25 +9,16 @@
   <title>Toufik Swar</title>
   <!-- Font Awesome -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  {% comment %} <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css"> {% endcomment %}
-
   <!-- Bootstrap core CSS -->
   <link href='{% static "vendor/mdbootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
-  <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
-
   <!-- Material Design Bootstrap -->
-  <!-- <link href="css/mdb.min.css" rel="stylesheet"> -->
   <link href='{% static "vendor/mdbootstrap/css/mdb.min.css" %}' rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href='{% static "vendor/mdbootstrap/css/style.min.css" %}' rel="stylesheet">
-  <!-- <link href="css/style.min.css" rel="stylesheet"> -->
+
 
   <link href='{% static "css/custom.css" %}' rel="stylesheet">
 
-  <style type="text/css">
-
-
-  </style>
 </head>
 
 <body>
@@ -69,7 +60,7 @@
 
   <script type="text/javascript">
     new TypeIt('#element', {
-      speed: 150
+      speed: 70
     }).type('Hey there')
       .break()
       .type('I am Toufik')
@@ -81,7 +72,19 @@
       .empty()
       .pause(2000)
       .break()
-      .type('Check out my skills :)')
+      .type('Web Development')
+      .break()
+      .pause(1000)
+      .type('Digital Marketing')
+      .break()
+      .pause(1000)
+      .type('Data Analysis')
+      .break()
+      .pause(1000)
+      .type("Customized Dashboards")
+      .pause(2000)
+      .empty()
+      .type("Check my skills <a href='#skills'>here</a>")
       ;
   </script>
 
@@ -112,7 +115,9 @@
   <script type="text/javascript">
     $(document).ready(function (){
       $(document).on('submit', '#contact_form', function(e){
-        e.preventDefault();        
+        e.preventDefault();  
+        $('#contact_form button').prop("disabled", true);
+        $("#loader").css('display','block');
           $.ajax({
             type:'POST',
             url:'/contact/',
@@ -134,26 +139,35 @@
             //   }
             // }
             success: function(response){
+              
               if (response.status === 'sent'){
+                  $("#loader").css('display','none');
                   $("#contact_alert").addClass('alert-success').fadeIn();
                   $("#contact_form")[0].reset();
+                  $('#contact_form button').prop("disabled", false); 
+                  $('#contact_form').remove();
               } else if (response.status === 'failed'){
+                  $("#loader").css('display','none');
                   console.log("failed to send message")
                   $("#message").text("The message couldn't be sent");
                   $("#message").prev().children('i').removeClass('fa-thumbs-o-up').addClass('fa-times-circle');
                   $("#contact_alert").addClass('alert-danger').fadeIn();
+                  $('#contact_form button').prop("disabled", false); 
               } else if (response.status === 'form error' && response.errors ){
+                $("#loader").css('display','none');
                 console.log(response.errors)
                 error_data = response.errors
                 $.each(error_data, function(index,value){
                   console.log(index + " "+ error_data[index]);
                   $("#id_"+index).addClass("is-invalid");
                   $("#id_"+index).next('.invalid-feedback').show().html(String(error_data[index]));
+                  $('#contact_form button').prop("disabled", false); 
                   //$(".invalid-feedback").show()
                 });
               }
             },
         });
+
       });
 
       $("form").on("click", function(){
