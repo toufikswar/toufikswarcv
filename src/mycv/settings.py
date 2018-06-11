@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 from decouple import config, Csv
 
-if not config('DEBUG', cast=bool):
+if config('STATIC2AWS', cast=bool):
     from mycv.aws.conf import *
 
 
@@ -163,3 +163,7 @@ EMAIL_PORT = config('EMAIL_PORT', cast=int)  # double check the settings in your
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # don't include the @blah.com part! I have made this stupid mistakes before
 
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+# Force SSL Redirect in PROD
+if not config('DEBUG', cast=bool):
+    SECURE_SSL_REDIRECT = True
