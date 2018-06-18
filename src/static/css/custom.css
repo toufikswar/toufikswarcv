@@ -148,3 +148,7 @@ body,
   to{ bottom:0; opacity:1 }
 }
 
+/* Skills section */
+.skill{
+  font-size: 1.6rem;
+}

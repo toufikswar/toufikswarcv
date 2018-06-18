@@ -6,7 +6,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Toufik Swar</title>
+  <meta name="description" content="Mutlilingual Information Technology Engineer specialized in Web Development, Digital Marketing and Data Science" />
+  <meta name="keywords" content="Information Technology, Freelance, Coding, Front End, Back End, Data Science, Python, .NET, Javascript, HTML, CSS, Digital Marketing" />
+  <meta name="robots" content="index, follow" />
+
+  <title>Toufik Swar : IT Freelancer working in Web Development (Back End, Front End), Responsive Design, Web Marketing, Data Analysis</title>
   <!-- Font Awesome -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Bootstrap core CSS -->
@@ -15,10 +19,8 @@
   <link href='{% static "vendor/mdbootstrap/css/mdb.min.css" %}' rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href='{% static "vendor/mdbootstrap/css/style.min.css" %}' rel="stylesheet">
-
-
+  <!-- My Custom CSS -->
   <link href='{% static "css/custom.css" %}' rel="stylesheet">
-
 </head>
 
 <body>
@@ -26,9 +28,6 @@
   {% include "cv/navbar.html" %}
 
   {% block content %}
-  
-  
-
   {% endblock content %}
 
   {% include "cv/footer.html" %}
@@ -52,42 +51,9 @@
   
 
 
-  <!-- Initializations -->
-  <script type="text/javascript">
-    // Animations initialization
-    new WOW().init();
-  </script>
-
-  <script type="text/javascript">
-    new TypeIt('#element', {
-      speed: 70
-    }).type('Hey there')
-      .break()
-      .type('I am Toufik')
-      .break()
-      .pause(1000)
-      .type('I can help you with your business')
-      .pause(1000)
-      .pause(2000)
-      .empty()
-      .pause(2000)
-      .break()
-      .type('Web Development')
-      .break()
-      .pause(1000)
-      .type('Digital Marketing')
-      .break()
-      .pause(1000)
-      .type('Data Analysis')
-      .break()
-      .pause(1000)
-      .type("Customized Dashboards")
-      .pause(2000)
-      .empty()
-      .type("Check my skills <a href='#skills'>here</a>")
-      ;
-  </script>
-
+  <!-- Animations initialization for MD Bootstrap -->
+  <script type="text/javascript">new WOW().init();</script>
+  <script src="{% static 'js/typing.js' %}"></script>
 
   <!-- <script type="text/javascript">
     $(document).ready(function(){
@@ -99,83 +65,8 @@
     });
   </script> -->
 
-
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $("#ibm,#bnp,#ccl").on("shown.bs.collapse", function(event){
-        $(this).next().children("a").children("i").addClass('fa-minus-circle').removeClass('fa-plus-circle');
-      });
-      $("#ibm,#bnp,#ccl").on("hidden.bs.collapse", function(event){
-        $(this).next().children("a").children("i").addClass('fa-plus-circle').removeClass('fa-minus-circle');
-      });
-    });
-  </script>
-
-
-  <script type="text/javascript">
-    $(document).ready(function (){
-      $(document).on('submit', '#contact_form', function(e){
-        e.preventDefault();  
-        $('#contact_form button').prop("disabled", true);
-        $("#loader").css('display','block');
-          $.ajax({
-            type:'POST',
-            url:'/contact/',
-            data: {
-              full_name:$('#id_full_name').val(),
-              email: $('#id_email').val(),
-              message: $('#id_message').val(),
-              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken').val(),
-            },
-            dataType: 'json',
-            // success: function(response){
-            //   if (response.status === "success"){
-            //     $("#contact_alert").addClass('alert-success').fadeIn();
-            //   }
-            //   else {
-            //     $("#message").text("The message couldn't be sent");
-            //     $("#message").prev().children('i').removeClass('fa-thumbs-o-up').addClass('fa-times-circle');
-            //     $("#contact_alert").addClass('alert-danger').fadeIn();
-            //   }
-            // }
-            success: function(response){
-              
-              if (response.status === 'sent'){
-                  $("#loader").css('display','none');
-                  $("#contact_alert").addClass('alert-success').fadeIn();
-                  $("#contact_form")[0].reset();
-                  $('#contact_form button').prop("disabled", false); 
-                  $('#contact_form').remove();
-              } else if (response.status === 'failed'){
-                  $("#loader").css('display','none');
-                  console.log("failed to send message")
-                  $("#message").text("The message couldn't be sent");
-                  $("#message").prev().children('i').removeClass('fa-thumbs-o-up').addClass('fa-times-circle');
-                  $("#contact_alert").addClass('alert-danger').fadeIn();
-                  $('#contact_form button').prop("disabled", false); 
-              } else if (response.status === 'form error' && response.errors ){
-                $("#loader").css('display','none');
-                console.log(response.errors)
-                error_data = response.errors
-                $.each(error_data, function(index,value){
-                  console.log(index + " "+ error_data[index]);
-                  $("#id_"+index).addClass("is-invalid");
-                  $("#id_"+index).next('.invalid-feedback').show().html(String(error_data[index]));
-                  $('#contact_form button').prop("disabled", false); 
-                  //$(".invalid-feedback").show()
-                });
-              }
-            },
-        });
-
-      });
-
-      $("form").on("click", function(){
-        console.log("test de is invalid");
-        $(".is-invalid").removeClass("is-invalid");
-      });
-    });
-  </script>
+  <script src="{% static 'js/plusminus.js' %}"></script>
+  <script src="{% static 'js/emailform.js' %}"></script>
 
 
 

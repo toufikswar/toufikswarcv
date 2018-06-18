@@ -14,10 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
+from django.conf.urls import handler404, handler500
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from maincv.views import home, contact
+
 
 
 
@@ -26,6 +28,7 @@ urlpatterns = [
     path('', include("maincv.urls", namespace='cv')),
     path('contact/',contact),
 ]
+
 
 
 # static() serves the static files to the static_root from the static_url

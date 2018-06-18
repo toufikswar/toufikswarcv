@@ -15,6 +15,8 @@ from decouple import config, Csv
 
 if config('STATIC2AWS', cast=bool):
     from mycv.aws.conf import *
+else:
+    STATIC2AWS = False
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -165,5 +167,5 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # don't include the @blah.com part!
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 # Force SSL Redirect in PROD
-if not config('DEBUG', cast=bool):
+if config('SSLREDIRECT', cast=bool):
     SECURE_SSL_REDIRECT = True
