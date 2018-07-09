@@ -1,54 +1,50 @@
 {% load static %}
-<!--Section: Main info-->
-<section class="">
-  <!--Grid row-->
-  <div class="row wow fadeIn">
-    <div class="col-md-4 my-4 text-center">
-      <img src="{% static 'img/toufik.png' %}" class="img-fluid z-depth-1-half rounded-circle" alt="My portrait">
+<section>
+  <div class="container cv">
+    <div class="row wow fadeIn">
+      <div class="col-md-4 my-4 text-center">
+        <img src="{% static 'img/toufik.png' %}" class="img-fluid z-depth-1-half rounded-circle" alt="My portrait">
+      </div>
+      <div class="col-md-8 my-4 d-flex justify-content-center align-items-center">
+        <p class="lead mx-1 px-4 text-justify">{{ person.profile.introduction | safe }}</p>
+      </div>
     </div>
-    <div class="col-md-8 my-4 d-flex justify-content-center align-items-center">
-      <p class="lead mx-1 px-4 text-justify">{{ person.Introduction | safe }}</p>
+    <div class="my-5"></div>
+    <div class="row">
+      <div class="col-md-12 my-4">
+        <blockquote class="blockquote text-center">
+          <p class="mb-0" style="font-size:1.5rem;padding-top:0;">{{ person.profile.quote }}</p>
+          <footer class="blockquote-footer"><cite title="Source Title">{{ person.profile.author }}</cite></footer>
+        </blockquote>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mt-5 mb-4">
+      <ul class="list-inline list-social-icons mb-0">
+        <li class="list-inline-item">
+          <a class="icons" href="https://www.linkedin.com/in/toufikswar/">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="icons" href="https://github.com/toufikzinho/">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="icons" href="{% url 'cv:home' %}#contact">
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+            </span>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
-  <div class="my-5"></div>
-  <div class="row">
-    <div class="col-md-12 my-4">
-      <blockquote class="blockquote text-center">
-        <p class="mb-0" style="font-size:1.5rem;padding-top:0;">{{ person.Quote }}</p>
-        <footer class="blockquote-footer"><cite title="Source Title">Benjamin Franklin</cite></footer>
-      </blockquote>
-    </div>
-  </div>
-  
-
-  <div class="d-flex justify-content-end mt-5">
-    <ul class="list-inline list-social-icons mb-0">
-      <li class="list-inline-item">
-        <a class="icons" href="#">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="icons" href="#">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="icons" href="#">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-    </ul>
-  </div>
-  
-
 </section>

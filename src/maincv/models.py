@@ -1,92 +1,114 @@
 from django.db import models
-from django.urls import reverse
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from datetime import datetime
 
-# Create your models here.
-class Curriculum(models.Model):
-    FirstName = models.CharField(max_length=200, verbose_name="First Name")
-    LastName = models.CharField(max_length=200, verbose_name="Last Name")
-    Email = models.EmailField(verbose_name="Email Address")
-    Phone = models.CharField(blank=True, null=True, max_length=200, verbose_name="Phone Number")
-    #can be blank in the form and null in the DB
-    FullAddress = models.CharField(blank=True, null=True,max_length=200, verbose_name="Address")
-    Timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-    UpdatedOn = models.DateTimeField(auto_now_add=False, auto_now=True)
-    Quote = models.CharField(blank=True, null=True,max_length=400, verbose_name="Quote")
-    Introduction = models.CharField(blank=True, null=True,max_length=1000, verbose_name="Presentation")
-    HasFacebook = models.BooleanField(verbose_name="Facebook")
-    HasTwitter = models.BooleanField(verbose_name="Twitter")
-    HasLinkedIn = models.BooleanField(verbose_name="LinkedIn")
-    HasGitHub= models.BooleanField(verbose_name="GitHub")
+
+class Location(models.Model):
+    city = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.Email
+        return self.city
 
-    def get_absolute_url(self):
-        """ method to create an absolute URL for the CV page"""
-        return reverse("cv:edit", kwargs={'id': self.pk, 'section': "about"})
+class Language(models.Model):
+    LANG_LEVEL = (
+        ('Basic','BASIC'),
+        ('Intermediate','INTERMEDIATE'),
+        ('Professional','PROFESSIONAL'),
+        ('Native','NATIVE'),
+    )
+    name = models.CharField(max_length=100, verbose_name="Language Name")
+    level = models.CharField(max_length=100, choices=LANG_LEVEL, verbose_name="Level")
+
+    def __str__(self):
+        return self.name
+
+class Skill(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Skill Name")
+    def __str__(self):
+        return self.name
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    address = models.CharField(max_length=100, null=True, blank=True, verbose_name="Address")
+    birthday = models.DateField(null=True, blank=True, verbose_name="Birthday")
+    phone = models.CharField(max_length=100,null=True, blank=True, verbose_name="Phone")
+    introduction = models.TextField(blank=True, null=True,max_length=1000, verbose_name="Introduction")
+    quote = models.CharField(blank=True, null=True,max_length=400, verbose_name="Quote")
+    author = models.CharField(blank=True, null=True,max_length=100, verbose_name="Author")
+
+    # Internal
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updatedOn = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    #Relationships
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
+    languages = models.ManyToManyField(Language, blank=True)
+    skill = models.ManyToManyField(Skill)
+    
+
+    def __str__(self):
+        return self.user.username
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+
+
 
 
 class Experience(models.Model):
-    Title = models.CharField(max_length=200, verbose_name="Position Title")
-    Company = models.CharField(max_length=200, verbose_name="Company Name")
-    ExperienceDescription = models.TextField(verbose_name="Job Description")
-    #ExperienceDescription = HTMLField('Description')
-    StartDate = models.DateField(verbose_name="Start Date")
-    EndDate = models.DateField(verbose_name="End Date")
-    IsCurrent = models.BooleanField(default=False,verbose_name="Is my current job")
-    Timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-    UpdatedOn = models.DateTimeField(auto_now_add=False, auto_now=True)
-    curriculum = models.ForeignKey('Curriculum', on_delete=models.CASCADE, default=1)
+    companyName = models.CharField(max_length=100, verbose_name="Company",null=True, blank=True)
+    jobTitle = models.CharField(max_length=100, verbose_name='Job Title',null=True, blank=True)
+    startDate = models.DateField(verbose_name="Start Date",null=True, blank=True)
+    endDate = models.DateField(verbose_name="End Date",null=True, blank=True)
+    description = models.TextField(verbose_name="Description",null=True, blank=True)
+    
+    # Internal
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updatedOn = models.DateTimeField(auto_now_add=False, auto_now=True)
+    
+    # Relationships
+    location = models.ForeignKey(Location,on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.Title
-
-    def get_absolute_url(self):
-        """ method to create an absolute URL for the Experience page"""
-        return reverse("cv:edit", kwargs={'id': self.curriculum.pk, 'section': "experience"}) # pylint: disable=E1101
+        return self.jobTitle
 
 
 class Education(models.Model):
-    SchoolName = models.CharField(max_length=200, verbose_name="School Name")
-    DegreeName = models.CharField(max_length=200, verbose_name="Degree Name")
-    StartDate = models.DateField(verbose_name="Start Date")
-    EndDate = models.DateField(verbose_name="End Date")
-    DegreeDescription = models.TextField('Description')
-    #Description = models.TextField(blank=True, null=True, verbose_name="Degree Description")
-    Timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-    UpdatedOn = models.DateTimeField(auto_now_add=False, auto_now=True)
-    curriculum = models.ForeignKey('Curriculum', on_delete=models.CASCADE, default=1)
-    LogoURL = models.CharField(max_length=200, verbose_name="Logo URL", default="put a URL")
-
-    def __str__(self):
-        return self.DegreeName
+    schoolName = models.CharField(max_length=100, verbose_name="School Name",null=True, blank=True)
+    degreeName = models.CharField(max_length=100, verbose_name="Degree Name",null=True, blank=True)
+    startDate = models.DateField(verbose_name="Start Date",null=True, blank=True)
+    endDate = models.DateField(verbose_name="End Date",null=True, blank=True)
+    description = models.TextField(verbose_name="Description",null=True, blank=True)
+    logoURL = models.CharField(max_length=200, verbose_name="Logo URL",null=True, blank=True)
     
-    def get_absolute_url(self):
-        """ method to create an absolute URL for the Experience page"""
-        return reverse("cv:edit", kwargs={'id': self.curriculum.pk, 'section': "education"}) # pylint: disable=E1101
+    # Internal
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updatedOn = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-class Technology(models.Model):
-    Name = models.CharField(max_length=200, verbose_name="Skill Name")
-    HtmlCode = models.TextField(verbose_name="Html Code")
-    Timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-    UpdatedOn = models.DateTimeField(auto_now_add=False, auto_now=True)
+    # Relationships
+    location = models.ForeignKey(Location,on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.Name
+        return self.degreeName
 
 
-class Skill(models.Model):
-    curriculum = models.ForeignKey('Curriculum', on_delete=models.CASCADE, default=1)
-    technology = models.ForeignKey('Technology', on_delete=models.CASCADE, null=True)
-    Level = models.CharField(blank=True, null=True, max_length=200, verbose_name="Level")
-    Timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-    UpdatedOn = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-    def __str__(self):
-        return self.technology.Name # pylint: disable=E1101
 
-    def get_absolute_url(self):
-        """ method to create an absolute URL for the Experience page"""
-        return reverse("cv:edit", kwargs={'id': self.curriculum.pk, 'section': "skill"}) # pylint: disable=E1101
+
+
+
 
 

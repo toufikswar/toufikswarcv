@@ -4,7 +4,7 @@
 
     <!-- Brand -->
     <a class="navbar-brand" href="{% url 'cv:home' %}" target="">
-      <strong>Toufik Swar</strong>
+      <strong class="mylogo">Toufik Swar</strong>
     </a>
 
     <!-- Collapse -->
@@ -29,14 +29,11 @@
         <li class="nav-item mx-3">
           <a class="nav-link js-scroll-trigger" href="{% url 'cv:home' %}#contact">Contact</a>
         </li>
-        
-        <!-- Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Other</a>
-          <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'cv:mycv' %}#experience">Curriculum</a>
-              <a class="dropdown-item" href="{% url 'cv:mycv' %}#about">About Me</a>
-          </div>
+        <li class="nav-item mx-3">
+          <a class="nav-link js-scroll-trigger" href="{% url 'cv:mycv' %}#experience">Curriculum</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link js-scroll-trigger" href="{% url 'cv:mycv' %}#about">About Me</a>
         </li>
       </ul>
 

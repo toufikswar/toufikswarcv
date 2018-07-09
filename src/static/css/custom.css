@@ -13,7 +13,7 @@
   transition: background .5s ease-in-out, padding .5s ease-in-out;
 }
 .top-nav-collapse {
-  background-color: #667490;
+  background-color: #212529;
 }
 /*
 footer.page-footer {
@@ -22,7 +22,7 @@ footer.page-footer {
 
 @media only screen and (max-width: 768px) {
   .navbar {
-    background-color: #667490;
+    background-color: #212529;
   }
 }
 
@@ -64,29 +64,7 @@ body,
   background-position: center center;
 }
 
-/* Typewritting  */
-.typewriter {
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid orange; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
-  animation: 
-    typing 6s steps(40, end),
-    blink-caret .75s step-end infinite;
-}
 
-/* The typing effect */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: orange; }
-}
 
 .blockquote {
   border-left: .25rem solid #eceeef;
@@ -151,4 +129,53 @@ body,
 /* Skills section */
 .skill{
   font-size: 1.6rem;
+}
+
+
+
+/* Icons in skill section stay orange */
+.fa-circle {
+  color: #ff9400;
+}
+
+.myorange{
+  color: #ff9400;
+}
+
+.btn-myorange {
+  background-color: #ff9400;
+}
+
+
+.mylogo {
+  color: #ff9400;
+  font-size: 1.6rem;
+}
+
+
+
+/* Add a photo to the contact form background */
+ #contact {
+  background-image: url('/static/img/background-close-up-computer-872958.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+/* Put form input borders in orange */
+input[type=text], input[type=email], textarea[name=message] {
+  border: 0.5px solid grey;
+}
+
+strong.keyword {
+  color:orange;
+}
+
+
+
+@media (min-width: 992px) {
+  /* change this, by default 960px */
+  .cv {
+    max-width: 950px;
+  }
 }

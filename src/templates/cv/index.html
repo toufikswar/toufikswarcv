@@ -6,14 +6,12 @@
 
   <!--Main layout-->
   <main>
-    <div class="container">
-      <span id="skills" class="d-flex"></span>
-      <hr class="my-5" style="border-color:white;">
-      {% include "cv/skills.html" %}
-      <span id="contact" class="d-block"></span>
-      <hr class="my-5">
-      {% include "cv/contact.html" %}
-    </div>
+    <span id="skills" class="d-flex"></span>
+    <hr class="my-5" style="border-color:white;">
+    {% include "cv/skills.html" %}
+    <span id="contact" class="d-flex"></span>
+    {% comment %} <hr class="my-5"> {% endcomment %}
+    {% include "cv/contact.html" %}
   </main>
   <!--Main layout-->
   {% endblock content %}
