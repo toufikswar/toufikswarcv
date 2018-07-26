@@ -2,7 +2,7 @@
 <section id="education" class="px-md-5">
   <div class="container cv">
     <div class="d-flex">
-      <h4 class="my-auto">Education</h4><i class=" grey-text fa fa-2x fa-graduation-cap my-auto ml-auto"></i>
+      <h4 class="my-auto ml-auto">Education</h4>
     </div>
     <hr class="mb-5">
     {% for edu in educations  %}
@@ -15,10 +15,13 @@
           <div class="text-center"><img src="{% static edu.logoURL %}" class="img-fluid" alt="{{edu.schoolName}} Logo"></div>
         </div>
       </div>
-      <div class="col-md-1"></div>
-      <div class="col-md-8">
-        <div class="d-flex"><h5 class="text-primary ml-auto">{{ edu.degreeName }}</h5></div>
-        {{ edu.description | safe }}
+      <!-- <div class="col-md-1"></div> -->
+      <div class="col-md-8 my-auto">
+        <!-- <div class="d-flex align-items-center"><h5 class="text-primary mx-auto align-self-center">{{ edu.degreeName }}</h5></div> -->
+        <!-- <div class="d-flex"><p class="lead ">{{ edu.degreeName }}</p></div> -->
+        <p class="lead text-center">{{ edu.degreeName }}</p>
+        <p class="text-center">{{ edu.description | safe }}</p>
+        <!-- {{ edu.description | safe }} -->
       </div>
     </div>
     {% endfor %}

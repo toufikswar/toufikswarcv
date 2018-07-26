@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 
     # Project apps
     'maincv',
@@ -53,6 +55,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'storages', #(Handles static storage on AWS - also using boto3)
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
