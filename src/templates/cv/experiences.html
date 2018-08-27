@@ -2,7 +2,7 @@
 <section>
   <div class="container cv">
     <div class="d-flex">
-      <h4 class="my-auto ml-auto mt-5">Professional Experiences</h4>
+      <h4 class="my-auto ml-auto mt-5 pt-md-5">Professional Experiences</h4>
     </div>
     <hr class="mb-5">
     <!--Grid row-->
@@ -16,7 +16,7 @@
               <h5 class="mb-3">{{ exp.jobTitle }}</h5>
             </div>
             <div class="d-flex flex-column flex-md-row">
-              <div class="text-warning"><span class="font-weight-bold">{{ exp.companyName }}</span></div>
+              <div class="mycolor"><span class="font-weight-light">{{ exp.companyName }}</span></div>
               <div class="text-normal ml-md-auto">{{ exp.startDate|date:"F Y" }} - {{ exp.endDate|date:"F Y" }}</div>
             </div>
           {% comment %} </div> {% endcomment %}

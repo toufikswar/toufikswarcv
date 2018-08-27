@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.forms import formset_factory
 import smtplib
 import re
+import datetime
 
 from django.core.mail import EmailMessage
 
@@ -16,10 +17,11 @@ from .forms import ContactForm
 # Create your views here.
 
 def home(request):
-
+    now = datetime.datetime.now()
     form = ContactForm(request.POST or None)
     context = {
                 "form": form,
+                "year": now.year
 
     }
     return render(request, "cv/index.html", context)

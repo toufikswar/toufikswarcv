@@ -1,5 +1,14 @@
 {% extends "cv/base.html" %}
 
+{% block SEO %}
+  <meta name="description" content="Information Technology Engineer online CV and Experiences " />
+  <meta name="keywords" content="Information Technology, CV, IBM, MasterCard, BNP Paribas, Camus Lebkiri, Communication, Requirements, Trainings, ISEP, IAE de Paris La Sorbonne, MPSI, Multilingual" />
+  <meta name="robots" content="index, follow" />
+{% endblock SEO %}
+
+{% block title %}<title>Toufik Swar - A few words about me</title>{% endblock title %}
+
+
 {% block content %}
 <style>
   .navbar {
@@ -14,9 +23,9 @@
 </style>
 
 <main>
-  <span id="experience" class="d-flex"></span>
+  <span id="about" class="d-flex"></span>
   <hr class="my-5" style="border-color:white;">
-
+  {% include "cv/about_me.html" %}
   
   <hr class="my-5" style="border-color:white;">
 
@@ -28,10 +37,8 @@
   {% include "cv/education.html" %}
 
 
-  <span class="d-flex" id="about"></span>
-  <hr class="my-5">
 
-  {% include "cv/about_me.html" %}
+  {% comment %} {% include "cv/about_me.html" %} {% endcomment %}
 </main>
 
 {% endblock content %}
