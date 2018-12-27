@@ -1,4 +1,6 @@
-/* Navigation*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
+
+/* Navigation CSS*/
 .navbar {
   background-color: transparent;
 }
@@ -15,6 +17,8 @@
     background-color: #212529;
   }
 }
+/* End of nav bar CSS */
+
 
 /* Keeps image size always for 70% of original - on XS devices and all above */
 .img-fluid {
@@ -22,6 +26,9 @@
 }
 .img-fluid-flag {
   max-width: 30%;
+}
+.img-fluid-icone {
+  max-width: 24%;
 }
 
 /* Allows to put images on normal size for all devices bigger than XS */
@@ -37,6 +44,15 @@
   }
  }
 
+ a.nav-link{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+a.navbar-brand {
+  font-family: 'Montserrat', sans-serif;
+}
+
 
 
 /* Necessary for full page carousel*/
@@ -46,20 +62,27 @@ body,
   height: 100%;
 }
 
-/* Carousel*/
-.carousel,
-.carousel-item,
-.carousel-item.active {
+/* Main Carousel */
+div#carousel-example-1 .carousel,
+div#carousel-example-1 .carousel-item,
+div#carousel-example-1 .carousel-item.active {
   height: 100%;
 }
-.carousel-inner {
+div#carousel-example-1 .carousel-inner {
   height: 100%;
 }
-.carousel-item:nth-child(1) {
-  background-image: url('/static/img/adult-apple-device-business-839465.jpg');
+div#carousel-example-1 .carousel-item:nth-child(1) {
+  /* background-image: url('/static/img/adult-apple-device-business-839465.jpg'); */
+  background-image: url('/static/img/abstract-architectural-design-architecture-316093.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+}
+
+
+.main-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
 
 /* Make first letter bigger */
@@ -87,7 +110,7 @@ p.story::first-letter {
 }
 
 
-/* Page Loader CSS */
+/* Page Loader CSS for when sending an email */
 /* Center the loader */
 #loader {
   display: none;
@@ -135,14 +158,13 @@ p.story::first-letter {
   from{ bottom:-100px; opacity:0 } 
   to{ bottom:0; opacity:1 }
 }
+/* End of page loader css */
 
 
 /* Skills section */
 .skill{
   font-size: 1.6rem;
 }
-
-
 
 /* Icons in skill section stay blue */
 .fa-circle {
@@ -157,10 +179,11 @@ p.story::first-letter {
 }
 
 /* Apply main site color to buttons  */
-.btn-mycolor {
-  background-color: #4D9FF8;
+a.btn-mycolor {
+  /* background-color: #4D9FF8; */
+  border-color: white!important;
+  color: white!important;
 }
-
 
 
 /* Add a photo to the contact form background */
@@ -199,3 +222,97 @@ input[type=text], input[type=email], textarea[name=message] {
   border-bottom: #4D9FF8;
   padding-bottom: 1rem;
 }
+
+
+
+/* Testimonial carousel CSS from Tutorial republique  */
+section#testimonials .col-center {
+	margin: 0 auto;
+	float: none !important;
+}
+section#testimonials .carousel {
+	margin: 50px auto;
+	padding: 0 70px;
+}
+section#testimonials .carousel .item {
+	/* color: #999;
+	font-size: 14px; */
+    text-align: center;
+	overflow: hidden;
+    min-height: 290px;
+}
+section#testimonials .carousel .item .img-box {
+	width: 135px;
+	height: 135px;
+	margin: 0 auto;
+	padding: 5px;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+}
+section#testimonials .carousel .img-box img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border-radius: 50%;
+}
+section#testimonials .carousel .testimonial {
+	padding: 30px 0 10px;
+}
+section#testimonials .carousel .overview {	
+	font-style: italic;
+}
+section#testimonials .carousel .overview b {
+	/* text-transform: uppercase; */
+	color: #7AA641;
+}
+section#testimonials .carousel .carousel-control {
+	width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    top: 50%;
+	background: none;
+}
+section#testimonials .carousel-control i {
+    font-size: 68px;
+	line-height: 42px;
+    position: absolute;
+    display: inline-block;
+	color: rgba(0, 0, 0, 0.8);
+    text-shadow: 0 3px 3px #e6e6e6, 0 0 0 #000;
+}
+section#testimonials .carousel .carousel-indicators {
+	bottom: -40px;
+}
+section#testimonials .carousel-indicators li, .carousel-indicators li.active {
+	width: 10px;
+	height: 10px;
+	margin: 1px 3px;
+	border-radius: 50%;
+}
+section#testimonials .carousel-indicators li {	
+	background: #999;
+	border-color: transparent;
+	box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+}
+section#testimonials .carousel-indicators li.active {	
+	background: #555;		
+	box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+}
+
+
+/* Testimonial image resize with responsive size */
+div.img-container {
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+img.img-testimonial {
+  width: 100%;
+  height: auto;
+}
+@media (min-width: 768px) { 
+  img.img-testimonial{
+    width: 35%;
+  }
+ }
+

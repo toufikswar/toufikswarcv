@@ -1,0 +1,32 @@
+{% if site_configuration.show_education %}
+{% load static %}
+<section id="education" class="px-md-5">
+  <div class="container cv">
+    <div class="d-flex">
+      <h4 class="my-auto ml-auto">Education</h4>
+    </div>
+    <hr class="mb-5">
+    {% for edu in educations  %}
+    <div class="row features-small mb-5 pt-5 wow fadeIn">
+      {% comment %} <div class="col-md-3 mb-3"><h5>{{ edu.DegreeName }}</h5>{{ edu.EndDate|date:"F Y" }}</div> 
+      <div class="col-md-7 d-flex-column">{{ edu.DegreeDescription | safe }}</div>
+      <div class="col-md-2"><img src="{% static edu.LogoURL %}" class="img-fluid" alt="Logo ISEP"></div> {% endcomment %}
+      <div class="col-md-3">
+        <div class="d-flex flex-column">
+          <div class="text-center"><img src="{% static edu.logoURL %}" class="img-fluid" alt="{{edu.schoolName}} Logo"></div>
+        </div>
+      </div>
+      <!-- <div class="col-md-1"></div> -->
+      <div class="col-md-8 my-auto">
+        <!-- <div class="d-flex align-items-center"><h5 class="text-primary mx-auto align-self-center">{{ edu.degreeName }}</h5></div> -->
+        <!-- <div class="d-flex"><p class="lead ">{{ edu.degreeName }}</p></div> -->
+        <p class="lead text-center">{{ edu.degreeName }}</p>
+        <div class="text-center">{{ edu.description | safe }}</div>
+        <!-- {{ edu.description | safe }} -->
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+

@@ -34,7 +34,8 @@ urlpatterns = [
     path('', include("maincv.urls", namespace='cv')),
     path('contact/',contact),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain;charset=utf-8')),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps} ,name='django.contrib.sitemaps.views.sitemap')
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps} ,name='django.contrib.sitemaps.views.sitemap'),
+    path('summernote/', include('django_summernote.urls')),
 ]
 
 

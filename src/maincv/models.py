@@ -12,18 +12,20 @@ class Location(models.Model):
     def __str__(self):
         return self.city
 
+
 class Language(models.Model):
     LANG_LEVEL = (
-        ('Basic','BASIC'),
-        ('Intermediate','INTERMEDIATE'),
-        ('Professional','PROFESSIONAL'),
-        ('Native','NATIVE'),
+        ('Basic', 'BASIC'),
+        ('Intermediate', 'INTERMEDIATE'),
+        ('Professional', 'PROFESSIONAL'),
+        ('Native', 'NATIVE'),
     )
     name = models.CharField(max_length=100, verbose_name="Language Name")
     level = models.CharField(max_length=100, choices=LANG_LEVEL, verbose_name="Level")
 
     def __str__(self):
         return self.name
+
 
 class Skill(models.Model):
     name = models.CharField(max_length=100, verbose_name="Skill Name")
@@ -49,36 +51,34 @@ class Profile(models.Model):
     languages = models.ManyToManyField(Language, blank=True)
     skill = models.ManyToManyField(Skill)
     
-
     def __str__(self):
         return self.user.username
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
+
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
-
-
-
 class Experience(models.Model):
-    companyName = models.CharField(max_length=100, verbose_name="Company",null=True, blank=True)
-    jobTitle = models.CharField(max_length=100, verbose_name='Job Title',null=True, blank=True)
-    startDate = models.DateField(verbose_name="Start Date",null=True, blank=True)
-    endDate = models.DateField(verbose_name="End Date",null=True, blank=True)
-    description = models.TextField(verbose_name="Description",null=True, blank=True)
+    companyName = models.CharField(max_length=100, verbose_name="Company", null=True, blank=True)
+    jobTitle = models.CharField(max_length=100, verbose_name='Job Title', null=True, blank=True)
+    startDate = models.DateField(verbose_name="Start Date", null=True, blank=True)
+    endDate = models.DateField(verbose_name="End Date", null=True, blank=True)
+    description = models.TextField(verbose_name="Description", null=True, blank=True)
     
     # Internal
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updatedOn = models.DateTimeField(auto_now_add=False, auto_now=True)
     
     # Relationships
-    location = models.ForeignKey(Location,on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
@@ -98,17 +98,52 @@ class Education(models.Model):
     updatedOn = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     # Relationships
-    location = models.ForeignKey(Location,on_delete=models.CASCADE)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True,
+                                blank=True)
 
     def __str__(self):
         return self.degreeName
 
 
+class Service(models.Model):
+    title = models.CharField(max_length=100, verbose_name="Service Title")
+    icone = models.TextField()
+    description = models.TextField(default="Add description")
+
+    def __str__(self):
+        return self.title
 
 
+class Title(models.Model):
+    main_title = models.CharField(max_length=200, verbose_name="Main Title")
+    sub_title = models.CharField(max_length=200, verbose_name="Main Title")
 
 
+class Testimonial(models.Model):
+    reference = models.CharField(max_length=200,
+                                 verbose_name="Reference's name")
+    role = models.CharField(max_length=200,
+                            verbose_name="Reference Role")
+    company = models.CharField(max_length=200,
+                               verbose_name="Company name")
+    content = models.TextField(default="Good Work")
+    image = models.CharField(max_length=200,
+                             default="path/to/image",
+                             verbose_name="Image's URL")
+
+    def __str__(self):
+        return self.reference
 
 
+class SiteConfiguration(models.Model):
+    show_education = models.BooleanField(null=False,
+                                         blank=False,
+                                         default=True)
+    show_experiences = models.BooleanField(null=False,
+                                           blank=False,
+                                           default=True)
+    show_testimonials = models.BooleanField(null=False,
+                                            blank=False,
+                                            default=True)
 

@@ -1,0 +1,36 @@
+{% if site_configuration.show_experiences %}
+<!--Section: Main features & Quick Start-->
+<section>
+  <div class="container cv">
+    <div class="d-flex">
+      <h4 class="my-auto ml-auto mt-5 pt-md-5">Professional Experiences</h4>
+    </div>
+    <hr class="mb-5">
+    <!--Grid row-->
+    <div class="row wow fadeIn">
+      <!--Grid column-->
+      <div class="col-md-12 px-4">
+        {% for exp in experiences %}
+        <div class="py-2 mb-5"> <!-- removed class my-auto  -->
+          {% comment %} <div class="resume-item d-flex flex-sm-row flex-column"><!-- flex-column allows to put date under at breakpoint  --> {% endcomment %}  
+            <div class="resume-content mr-auto">
+              <h5 class="mb-3">{{ exp.jobTitle }}</h5>
+            </div>
+            <div class="d-flex flex-column flex-md-row">
+              <div class="mycolor"><span class="font-weight-light">{{ exp.companyName }}</span></div>
+              <div class="text-normal ml-md-auto">{{ exp.startDate|date:"F Y" }} - {{ exp.endDate|date:"F Y" }}</div>
+            </div>
+          {% comment %} </div> {% endcomment %}
+          <div class="resume-item d-flex flex-column">
+            {{ exp.description | safe }}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <!--/Grid column-->
+    </div>
+  <!--/Grid row-->
+  </div>
+</section>
+<!--Section: Main features & Quick Start-->
+{% endif %}

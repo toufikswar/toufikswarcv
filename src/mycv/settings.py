@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 from decouple import config, Csv
+from django.utils.translation import ugettext_lazy as _
 
 if config('STATIC2AWS', cast=bool):
     from mycv.aws.conf import *
@@ -27,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =  config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
@@ -54,6 +55,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'widget_tweaks',
     'storages', #(Handles static storage on AWS - also using boto3)
+    'rosetta', # for translation
+    'django_summernote',
 ]
 
 SITE_ID = 1
@@ -61,6 +64,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -123,6 +127,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
+
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -156,7 +162,21 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"media_cdn")
 # Crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+#SummerNote WYSIWYG Gadget
+SUMMERNOTE_THEME = 'bs4' 
+SUMMERNOTE_CONFIG = {
+    'width': '100%',
+    'height': '480',
+    'codemirror': {
+        'mode': 'htmlmixed',
+    },
+    'codeview': True,
+    'disable_attachment': True,
+    'toolbar': [
+        ['codeview']
+    ]
 
+}
 
 
 # Email Configuration

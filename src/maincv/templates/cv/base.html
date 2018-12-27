@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MWW6RMF');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  {% block SEO %}
+  <meta name="description" content="Need help on a project ? I provide services in Development, Web Marketing and Data Analytics." />
+  <meta name="keywords" content="Information Technology, Freelance, Coding, Front End, Back End, Data Science, Python, .NET, Javascript, HTML, CSS, Digital Marketing, Friendly UI, Data Analytics, Visualization" />
+  <meta name="robots" content="index, follow" />
+  {% endblock SEO %}
+
+  {% block title %}<title>Toufik Swar - Multilingual Friendly IT Freelancer</title>{% endblock title %}
+
+  <!-- Font Awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href='{% static "vendor/mdbootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href='{% static "vendor/mdbootstrap/css/mdb.min.css" %}' rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href='{% static "vendor/mdbootstrap/css/style.min.css" %}' rel="stylesheet">
+  
+  
+
+  <!-- My Custom CSS -->
+  <link href='{% static "css/custom.css" %}' rel="stylesheet">
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MWW6RMF"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  {% include "cv/navbar.html" %}
+
+  {% block content %}{% endblock content %}
+
+  {% include "cv/footer.html" %}
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script src='{% static "vendor/mdbootstrap/js/jquery-3.2.1.min.js" %}'></script>
+  <!-- Bootstrap tooltips -->
+  <script src='{% static "vendor/mdbootstrap/js/popper.min.js" %}'></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src='{% static "vendor/mdbootstrap/js/bootstrap.min.js" %}'></script>
+  <!-- MDB core JavaScript -->
+  <script src='{% static "vendor/mdbootstrap/js/mdb.min.js" %}'></script>
+
+  <!-- Template specific -->
+  <script src='{% static "vendor/jquery-easing/jquery.easing.min.js" %}'></script>
+  <script src='{% static "js/resume.js" %}'></script>
+
+  <!-- Other JS Query plugin -->
+  <script src='{% static "vendor/typeit/dist/typeit.min.js" %}'></script>
+  
+
+
+  <!-- Animations initialization for MD Bootstrap -->
+  <script>new WOW().init();</script>
+  <script src="{% static 'js/typing.js' %}"></script>
+  <script src="{% static 'js/plusminus.js' %}"></script>
+  <script src="{% static 'js/emailform.js' %}"></script>
+
+
+
+
+</body>
+
+</html>

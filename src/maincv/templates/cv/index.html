@@ -1,0 +1,19 @@
+{% extends "cv/base.html" %}
+
+
+{% block content %}
+{% include "cv/image_carousel.html" %}
+
+  <!--Main layout-->
+  <main>
+    <span id="skills" class="d-flex"></span>
+    <hr class="my-5" style="border-color:white;">
+    {% include "cv/services.html" %}
+    <span id="contact" class="d-flex"></span>
+    {% include "cv/testimonial.html" %}
+
+    {% comment %} <hr class="my-5"> {% endcomment %}
+    {% include "cv/contact.html" %}
+  </main>
+  <!--Main layout-->
+  {% endblock content %}

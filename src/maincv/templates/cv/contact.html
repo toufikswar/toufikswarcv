@@ -1,0 +1,36 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+<section id="contactme" class="mt-5 border-top">
+  <div class="container">  
+    <div class="row wow fadeIn py-5">
+      <div class="col-sm-8 offset-sm-2">
+        {% comment %} <p class="mb-5 h2 text-center font-weight-normal">Contact</p> {% endcomment %}
+        <div class="d-flex justify-content-center"><h1 class="my-4 h3 border-bottom border-primary pb-2 d-inline-block">Contact</h1></div>
+        <div id="contact_alert" class="alert collapse">
+          <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+          <span class="font-weight-bold"><i class="fa fa-thumbs-o-up mr-2"></i></span>
+          <span id='message'>Your message was sent sucessfully !</span>
+        </div>
+        <form method="post" id="contact_form" novalidate>{% csrf_token %}
+          {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field }}
+          {% endfor %}
+          {% for field in form.visible_fields %}
+            <div class="form-group">
+              {{ field.label_tag }}
+              {% render_field field class="form-control" %}
+                <div class="invalid-feedback"></div>
+            </div>
+          {% endfor %}
+          <div id="loader"></div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-mycolor">Submit<i class="fa fa-paper-plane-o ml-2"></i></button>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-6"></div>
+    </div>
+  </div>
+</section>

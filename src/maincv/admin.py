@@ -1,7 +1,14 @@
 from django import forms
 from mycv.widgets import HtmlEditor
 from django.contrib import admin
-from .models import Experience, Education, Skill, Location, Profile, Language
+from .models import (Experience, Education, Skill, Location, Profile, Language,
+                     Title, Testimonial, SiteConfiguration)
+from django_summernote.admin import SummernoteModelAdmin
+
+
+class ServiceAdmin(SummernoteModelAdmin):
+    summernote_fields = ('description',)
+
 
 # Register your models here.
 
@@ -35,21 +42,19 @@ from .models import Experience, Education, Skill, Location, Profile, Language
 #     class Meta:
 #         model = Education
 
-# class ExperienceAdmin(admin.ModelAdmin):
-#     form = ExperienceAdminForm
-#     list_display = ['__str__', 'Title', 'Company']
-#     class Meta:
-#         model = Experience
+class ExperienceAdmin(SummernoteModelAdmin):
+    summernote_fields = ('description',)
 
 
-
-
-
-#admin.site.register(Curriculum, CurriculumAdmin)
-admin.site.register(Education)#, EducationAdmin)
-admin.site.register(Experience)#, ExperienceAdmin)
-#admin.site.register(Technology)
+# admin.site.register(Curriculum, CurriculumAdmin)
+admin.site.register(Education)  # , EducationAdmin)
+admin.site.register(Experience, ExperienceAdmin)
+# admin.site.register(Technology)
 admin.site.register(Skill)
 admin.site.register(Location)
 admin.site.register(Profile)
 admin.site.register(Language)
+#admin.site.register(Service, ServiceAdmin)
+admin.site.register(Title)
+admin.site.register(Testimonial)
+admin.site.register(SiteConfiguration)
