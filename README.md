@@ -30,21 +30,45 @@ django-summernote==0.8.10.0
 https://github.com/simhnna/django-widgets-improved (for generating forms manually)
 django-widgets-improved==1.5.0
 
-
+- Required for AWS
 docutils==0.14
+
+- Required for Prospector (Pep8)
 dodgy==0.1.9
 flake8==3.6.0
 flake8-polyfill==1.0.2
+
+- Required by requests
 idna==2.7
+
+- Required bu PyLint
 isort==4.3.4
+
+- JSON Matching Expressions, required by AWS
 jmespath==0.9.3
+
+- JavaScript minifier
 jsmin==2.2.2
+
+- Required by astroid
 lazy-object-proxy==1.3.1
+
+- Required for Flake 8
 mccabe==0.6.1
+
+- Required for Flake 8
 pep8-naming==0.4.1
+
+- Nice for seeing dependencies as a tree view
 pipdeptree==0.13.1
+
+- Required by Rosetta
 polib==1.1.0
+
+- Prospector: python static analysis tool (for Linting)
 prospector==1.1.6.2
+
+- Required for Linting
 pycodestyle==2.4.0
 pydocstyle==3.0.0
 pyflakes==1.6.0
@@ -54,6 +78,7 @@ pylint-common==0.2.5
 pylint-django==2.0.5
 pylint-flask==0.5
 pylint-plugin-utils==0.4
+
 python-dateutil==2.7.5
 python-decouple==3.1
 pytz==2018.7
