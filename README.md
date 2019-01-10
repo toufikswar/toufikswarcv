@@ -79,7 +79,10 @@ pylint-django==2.0.5
 pylint-flask==0.5
 pylint-plugin-utils==0.4
 
+- Required by Botocore
 python-dateutil==2.7.5
+
+- Strict separation of settings from code.
 python-decouple==3.1
 pytz==2018.7
 PyYAML==3.13
